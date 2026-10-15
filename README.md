@@ -1,245 +1,101 @@
-# Scientific Calculator
+<div align="center">
 
-A feature-rich scientific calculator application with a modern GUI built in Python using Tkinter. Supports basic arithmetic operations, trigonometric functions, logarithms, and advanced mathematical operations.
+# 🧮 Scientific Calculator (Python + Tkinter)
 
-**Created by:** Zain Aftab
+A dark-themed desktop scientific calculator written in pure Python with Tkinter. No third-party packages.
+
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
+![Tkinter](https://img.shields.io/badge/GUI-Tkinter-informational)
+![Dependencies](https://img.shields.io/badge/dependencies-none-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
+<img src="docs/screenshot.png" alt="Scientific calculator screenshot" width="340"/>
+
+</div>
 
 ---
 
 ## Features
 
-### Basic Operations
-- Addition, Subtraction, Multiplication, Division
-- Percentage calculations
-- Clear (C) and Clear Entry (CE) functions
-- Backspace for removing last digit
+| Group | Buttons |
+|---|---|
+| Arithmetic | `+` `−` `×` `÷`, `^` (power), `%` (remainder), parentheses `(` `)` |
+| Powers and roots | `x²`, `x³`, `√`, `1/x` |
+| Trigonometry (degrees) | `sin`, `cos`, `tan`, `asin`, `acos`, `atan` |
+| Logarithms | `log` (base 2), `log₁₀`, `ln` |
+| Other | `!` (factorial), constants `π` and `e` |
+| Editing | `C` (clear), `CE` (clear entry), `Back` (delete last character) |
 
-### Scientific Functions
-- **Trigonometry:** sin, cos, tan, asin, acos, atan
-- **Logarithms:** log₂, log₁₀, natural logarithm (ln)
-- **Powers & Roots:** x², x³, x^n (custom power), √ (square root)
-- **Advanced:** Reciprocal (1/x), Factorial (!)
-- **Constants:** π (pi) and e
+**Input checks and error messages**
+- Blocks two operators in a row and a second decimal point in one number
+- Clear messages for division by zero, square root of a negative, log of a non-positive number, `asin`/`acos` outside [-1, 1], mismatched parentheses and incomplete expressions
+- Factorial limited to whole numbers from 0 to 170 (larger values overflow a float)
+- Results rounded to 10 decimal places
+- Expressions are evaluated with `eval` in a restricted namespace (no built-ins), so only arithmetic can run
 
-### Advanced Features
-- Support for parentheses in expressions
-- Input validation for all operations
-- Error handling for edge cases (division by zero, invalid domain values)
-- Full error messages for better user experience
-- Prevention of consecutive operators
-- Decimal point validation
+**Interface**
+- 500 × 700 dark window with a large green display
+- Colour-coded buttons: red for clear/equals, teal for operators, grey for scientific functions, dark blue for digits
 
-### User Interface
-- Dark theme with color-coded buttons
-- Large, readable display with green text on dark background
-- Responsive grid layout
-- Button categories:
-  - **Red buttons:** Clear and Equals operations
-  - **Teal buttons:** Arithmetic operators
-  - **Gray buttons:** Scientific functions
-  - **White buttons:** Numbers and decimal
+## How to use
 
----
+- Build an expression with the digit, operator and bracket buttons, then press `=`.
+- The scientific buttons (`sin`, `√`, `x²`, `log`, `!` …) act **on the number currently shown**. For example, type `90` then press `sin` to get `1.0`, or type `5` then press `!` to get `120`.
+- Trigonometric functions use **degrees**.
 
-## Requirements
+| You press | Display shows |
+|---|---|
+| `125 × 8 =` | `1000` |
+| `2 ^ 10 =` | `1024` |
+| `( 4 + 5 ) × 2 =` | `18` |
+| `90` then `sin` | `1.0` |
+| `100` then `log₁₀` | `2.0` |
+| `16` then `√` | `4.0` |
 
-- Python 3.6 or higher
-- Tkinter (usually comes pre-installed with Python)
+## Getting started
 
-### Verify Tkinter Installation
+**Requirements:** Python 3.8 or newer with Tkinter (included in the standard Windows and macOS installers).
+
 ```bash
-python -m tkinter
-```
-If a small window opens, Tkinter is installed.
-
----
-
-## Installation & Setup
-
-### Method 1: Direct Download
-1. Download or clone the project
-2. Ensure Python is installed on your system
-3. No additional packages needed - Tkinter is included with Python
-
-### Method 2: Using Virtual Environment (Recommended)
-```bash
-# Create a virtual environment
-python -m venv venv
-
-# Activate it (Windows)
-venv\Scripts\activate
-
-# Activate it (macOS/Linux)
-source venv/bin/activate
+git clone https://github.com/ZainAftab-dev/Scientific-Calculator.git
+cd Scientific-Calculator
+python scripts/scientific_calculator.py
 ```
 
----
+If Python says `No module named 'tkinter'`:
 
-## How to Run in VS Code
+| OS | Fix |
+|---|---|
+| Windows / macOS | Reinstall Python from python.org and keep "tcl/tk and IDLE" ticked |
+| Ubuntu / Debian | `sudo apt install python3-tk` |
+| Fedora | `sudo dnf install python3-tkinter` |
 
-### Quick Start
-1. Open the project folder in VS Code
-2. Press `Ctrl + `` (backtick) to open the Terminal
-3. Run the calculator:
-   ```bash
-   python scripts/scientific_calculator.py
-   ```
-
-### Alternative Method
-1. Right-click on `scientific_calculator.py` in the file explorer
-2. Select **"Run Python File in Terminal"**
-
-### Using Python Interpreter
-1. Click on the Python file
-2. Click the **▶ Run** button in the top-right corner
-3. Select your Python interpreter if prompted
-
----
-
-## Usage Guide
-
-### Input Methods
-
-**Using Mouse:**
-- Click any button to add it to the display
-- Click equals (=) to calculate the result
-
-**Using Keyboard:**
-- Type numbers: 0-9
-- Type operators: `+`, `-`, `*`, `/`, `%`
-- Type parentheses: `(`, `)`
-- Press `Enter` or `=` to calculate
-- Press `Backspace` to delete last digit
-- Press `Escape` to clear all (like C button)
-
-### Example Calculations
-
-1. **Basic:** `5 + 3 =` → Result: `8`
-2. **Powers:** `2 x^n 10 =` → Result: `1024`
-3. **Trigonometry:** `sin(π/2) =` → Result: `1.0`
-4. **Logarithms:** `log₁₀(100) =` → Result: `2.0`
-5. **Complex:** `(√16 + 5) × 2 =` → Result: `18.0`
-
-### Keyboard Shortcuts
-
-| Key | Function |
-|-----|----------|
-| `0-9` | Enter digits |
-| `+`, `-`, `*`, `/`, `%` | Operators |
-| `(`, `)` | Parentheses |
-| `Enter` or `=` | Calculate |
-| `Backspace` | Delete last digit |
-| `Escape` | Clear all (C) |
-
----
-
-## Error Handling
-
-The calculator gracefully handles:
-- **Division by zero:** Shows "Error: Cannot divide by zero"
-- **Invalid trigonometric input:** Shows "Error: asin/acos input must be between -1 and 1"
-- **Negative logarithms:** Shows "Error: Cannot take log of non-positive number"
-- **Negative square root:** Shows "Error: Cannot take sqrt of negative number"
-- **Large factorials:** Limited to 170 to prevent overflow
-- **Mismatched parentheses:** Shows "Error: Mismatched parentheses"
-- **Incomplete expressions:** Shows "Error: Incomplete expression"
-
----
-
-## Technical Details
-
-### Architecture
-- **Class-based design:** `ScientificCalculator` class encapsulates all functionality
-- **Safe evaluation:** Uses restricted namespace for eval() to prevent security issues
-- **State tracking:** Tracks operator state to prevent invalid inputs
-- **Error propagation:** All errors are caught and displayed to the user
-
-### Color Scheme
-- **Background:** `#1e1e1e` (Dark Gray)
-- **Display:** `#2d2d2d` (Darker Gray) with `#00ff00` (Green text)
-- **Buttons:** 
-  - Standard: `#3d3d3d` (Medium Gray)
-  - Operators: `#17a2b8` (Teal)
-  - Clear/Equals: `#dc3545` (Red)
-  - Scientific: `#6c757d` (Dark Gray)
-
-### Mathematical Libraries Used
-- **math module:** For trigonometric, logarithmic, and factorial functions
-
----
-
-## Troubleshooting
-
-### Issue: Tkinter not found
-**Solution:** Install tkinter
-```bash
-# Windows
-pip install tk
-
-# macOS
-brew install python-tk
-
-# Linux
-sudo apt-get install python3-tk
-```
-
-### Issue: Calculator window doesn't open
-**Solution:** Check Python path in VS Code
-1. Go to View → Command Palette (Ctrl+Shift+P)
-2. Type "Python: Select Interpreter"
-3. Choose the correct Python version
-
-### Issue: Buttons not responding
-**Solution:** Click the calculator window to ensure it has focus, then try again
-
----
-
-## File Structure
+## Project structure
 
 ```
-scientific-calculator/
+Scientific-Calculator/
 ├── scripts/
-│   └── scientific_calculator.py    # Main calculator application
-├── README.md                        # This file
-└── [other project files]
+│   └── scientific_calculator.py   # ScientificCalculator class: display, buttons, event handling, evaluation
+└── docs/
+    └── screenshot.png
 ```
 
----
+## Known limitations
+
+- Mouse input only (no keyboard shortcuts yet)
+- The `deg/rad` button only shows the current mode; all trig functions work in degrees
+- No calculation history
+
+## Roadmap
+
+- Keyboard input
+- Working radian mode
+- Calculation history panel
+
+## Author
+
+**Zain Aftab** · [GitHub](https://github.com/ZainAftab-dev) · [LinkedIn](https://www.linkedin.com/in/zain-aftab-563727295/)
 
 ## License
 
-This project is open-source and available for educational and personal use.
-
----
-
-## Contact & Support
-
-**Author:** Zain Aftab
-
-For issues, questions, or suggestions, feel free to reach out.
-
----
-
-## Changelog
-
-### Version 1.0
-- Initial release
-- 40+ scientific functions
-- Full error handling
-- Dark theme GUI
-- Keyboard support
-
----
-
-## Future Enhancements
-
-- [ ] History of calculations
-- [ ] Conversion tools (units, bases)
-- [ ] Custom variables
-- [ ] Graphing functions
-- [ ] Scientific notation display
-- [ ] Undo/Redo functionality
-
----
-
-**Enjoy your scientific calculator! Happy calculating! 🧮**
+[MIT](LICENSE)
